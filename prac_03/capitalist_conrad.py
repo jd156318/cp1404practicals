@@ -14,7 +14,7 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1.0
 MAX_PRICE = 100.0
 INITIAL_PRICE = 10.0
-FILENAME = "stock_prices.py"
+FILENAME = "stock_prices.txt"
 
 price = INITIAL_PRICE
 number_of_days = 0
