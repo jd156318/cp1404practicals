@@ -5,7 +5,7 @@ Class updated to include __str__ method and take the name of the car as a parame
 
 
 class Car:
-    """Represent a Car object."""
+    """Represent a Car language_object."""
 
     def __init__(self, name="Vehicle", fuel=0):
         """Initialise a Car instance.
