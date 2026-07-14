@@ -22,7 +22,7 @@ def main():
 
 
 def extract_name(email):
-    """Extract name from user email"""l
+    """Extract name from user email"""
     split_name = [word.title() for word in email.split('@')[0].split('.')]
     full_name = " ".join(split_name)
     return full_name
