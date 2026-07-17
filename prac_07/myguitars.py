@@ -19,7 +19,7 @@ def main():
 
 def write_guitars_to_csv(guitars: list[Any]):
     """Write Guitar objects to csv file"""
-    with open("guitarss.csv", "w", newline='') as out_file:
+    with open("guitars.csv", "w", newline='') as out_file:
         writer = csv.writer(out_file)
         for guitar in guitars:
             writer.writerow([guitar.name, guitar.year, guitar.cost])
