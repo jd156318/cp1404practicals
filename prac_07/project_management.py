@@ -1,7 +1,7 @@
 """
 Practical CP1404
 Estimate: 1 hour
-start: 19+2:56
+start: 19+64+11:30-
 
 """
 from datetime import datetime
@@ -23,7 +23,7 @@ def main():
         if choice == "S":
             save_project_data_to_file(projects)
         if choice == "D":
-            pass
+            display_projects(projects)
         if choice == "F":
             filter_project_objects_by_date(projects)
         if choice == "A":
@@ -31,6 +31,22 @@ def main():
         if choice == "U":
             pass
         choice = get_menu_choice()
+
+
+def display_projects(projects: list[Any]):
+    """Display all projects sorted by incompleted/completed and then by priority."""
+    complete_projects = []
+    incomplete_projects = []
+    for project in projects:
+        complete_projects.append(project) if project.is_complete() else incomplete_projects.append(project)
+    complete_projects.sort(key=lambda project: project.priority)
+    incomplete_projects.sort(key=lambda project: project.priority)
+    print("Incomplete projects:")
+    for incomplete_project in incomplete_projects:
+        print(incomplete_project)
+    print("Completed projects:")
+    for complete_project in complete_projects:
+        print(complete_project)
 
 
 def save_project_data_to_file(projects: list[Any]):
@@ -71,8 +87,12 @@ def read_file_into_projects_list(filename) -> list[Any]:
         for line in lines:
             # Split line into parts at tab
             parts = line.strip().split("\t")
-            print(parts)
-            projects.append(Project(*parts))
+            start_date = datetime.strptime(parts[1], "%d/%m/%Y").date()
+            print(start_date, type(start_date))
+            priority = int(parts[2])
+            cost = float(parts[3])
+            completion_percentage = int(parts[4])
+            projects.append(Project(parts[0], start_date, priority, cost, completion_percentage))
     print(f"Loaded {len(projects)} projects from {filename}")
     return projects
 
